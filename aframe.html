@@ -2,21 +2,11 @@
 <html>
 <head>
     <title>Basic A-frame</title>
-    <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
-    <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery.js"></script>
     <script> 
-        var socket = io.connect('http://localhost:3000');
-        socket.on('message', function (data) {
-            console.log("Socket to update HTML Called");
-            console.log(data);
-            $('#text-l').text = data;
-        });
-    </script>
-
-    <script>
+        var socket = io.connect(window.location.origin);
         AFRAME.registerComponent('set-l', {
             schema: {
                 default: '',
@@ -25,11 +15,17 @@
                 emit: {default: ''}
             },
             init() {
-
+                socket.on('out1', function (data) {
+                    console.log("Socket to update HTML Called");
+                    console.log(data);
+                    a = $('#text-l');
+                    a[0].setAttribute('text', {'value': data});
+                });
                 const objl = document.getElementById('lef');
                 const objc = document.getElementById('cen');
                 const objr = document.getElementById('rig');
                 this.el.addEventListener('click', () => {
+                    socket.emit('screenId', 1);
                     var animation = document.createElement("a-animation");
                     animation.setAttribute("attribute","position");
                     animation.setAttribute("to","-2 0 -2");
@@ -41,12 +37,12 @@
                     objc.setAttribute('position', {x:  0, y: 0, z: -4});
                     objr.setAttribute('position', {x:  5, y: 0, z: -4});
                 });
-            }
+    }
         });
         AFRAME.registerComponent('set-c', {
             schema: {default: ''},
             init() {
-                socket.on('message', function (data) {
+                socket.on('out2', function (data) {
                     console.log("Socket to update HTML Called");
                     console.log(data);
                     a = $('#text-c');
@@ -56,6 +52,7 @@
                 const objc = document.getElementById('cen');
                 const objr = document.getElementById('rig');
                 this.el.addEventListener('click', () => {
+                    socket.emit('screenId', 2);
                     var animation = document.createElement("a-animation");
                     animation.setAttribute("attribute","position");
                     animation.setAttribute("to","0 0 -3");
@@ -73,10 +70,17 @@
         AFRAME.registerComponent('set-r', {
             schema: {default: ''},
             init() {
+                socket.on('out3', function (data) {
+                    console.log("Socket to update HTML Called");
+                    console.log(data);
+                    a = $('#text-r');
+                    a[0].setAttribute('text', {'value': data});
+                });
                 const objl = document.getElementById('lef');
                 const objc = document.getElementById('cen');
                 const objr = document.getElementById('rig');
                 this.el.addEventListener('click', () => {
+                    socket.emit('screenId', 3);
                     var animation = document.createElement("a-animation");
                     animation.setAttribute("attribute","position");
                     animation.setAttribute("to","2 0 -2");
@@ -97,7 +101,8 @@
 <a-scene>
     
     <a-sky></a-sky>
-    
+    <!-- <a-triangle  color="#073642" position="0 0 -3"></a-triangle> -->
+
     <a-camera position="0 0 0">
         <a-cursor color="#4CC3D9" fuse="true" timeout="1"></a-cursor>
     </a-camera>
