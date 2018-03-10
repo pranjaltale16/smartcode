@@ -24,6 +24,11 @@ app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/views/index.html');
 });
 
+app.get('/vr', function (req, res) {
+	console.log('GET request on /vr');
+	res.sendFile(__dirname + '/aframe.html');
+});
+
 var mainString = ""
 var mainString1 = ""
 var mainString2 = ""
