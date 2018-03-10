@@ -4,6 +4,7 @@
     <title>Basic A-frame</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script> 
         var socket = io.connect(window.location.origin);
@@ -99,31 +100,42 @@
 </head>
 <body>
 <a-scene>
+    <a-assets>
+        <img id="lef-texture" src="so.png">
+        <img id="rig-texture" src="sl.png">
+        <img id="sky-texture" src="eq.jpeg">
+    </a-assets>
     
-    <a-sky></a-sky>
+    <a-entity environment="preset: checkerboard"></a-entity>
+
+    <!-- <a-sky src="#sky-texture"></a-sky> -->
     <!-- <a-triangle  color="#073642" position="0 0 -3"></a-triangle> -->
 
     <a-camera position="0 0 0">
         <a-cursor color="#4CC3D9" fuse="true" timeout="1"></a-cursor>
     </a-camera>
 
+    <a-plane id="w-lef" src="#lef-texture" position=" -9 0 0" set-r="lef" rotation="0 90 0" width="5" height="5" color="#002b36"></a-plane>
+
     <a-plane id="lef" position="-5 0 -4" set-l="lef" rotation="0 45 0" width="4" height="4" color="#002b36">
         <a-entity id="text-l" 
-            text="letterSpacing: -2; font: https://cdn.aframe.io/fonts/SourceCodePro.fnt; align:left; color: #839496; width: 4; value: This text will be 4 units wide. This text will be 4 units wide.">
+            text="letterSpacing: -2; align:left; color: #839496; width: 4; value: This is a sample text. We can modify it.">
         </a-entity>
     </a-plane>
 
     <a-plane id="cen" position=" 0 0 -4" set-c="cen" rotation="0 0 0" width="4" height="4" color="#002b36">
         <a-entity id="text-c" 
-            text="letterSpacing: -2; font: https://cdn.aframe.io/fonts/SourceCodePro.fnt; align:left; color: #839496; width: 4;  value: This text will be 4 units wide. This text will be 4 units wide.">
+            text="letterSpacing: -2; align:center; color: #839496; width: 4;  value: Hello!">
         </a-entity>
     </a-plane>
 
     <a-plane id="rig" position=" 5 0 -4" set-r="rig" rotation="0 -45 0" width="4" height="4" color="#002b36">
         <a-entity id="text-r" 
-            text="letterSpacing: -2; font: https://cdn.aframe.io/fonts/SourceCodePro.fnt; align:left; color: #839496; width: 4; value: This text will be 4 units wide. This text will be 4 units wide. This text will be 4 units wide. This text will be 4 units wide. This text will be 4 units wide. This text will be 4 units wide.">
+            text="letterSpacing: -2; align:left; color: #839496; width: 4; value: This is a sample text. We can modify it.">
         </a-entity>
     </a-plane>
+    
+    <a-plane id="w-rig" src="#rig-texture" position=" 9 0 0" set-l="lef" rotation="0 -90 0" width="5" height="5" color="#002b36"></a-plane>
 </a-scene>
 
 </body>

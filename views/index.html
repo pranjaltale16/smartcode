@@ -1,21 +1,48 @@
-<textarea onkeyup="myFunction()" id='textarea' rows="20" cols="100"></textarea>
-<div class = "	box" id = "box">Hello from the other side</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
-<script src="https://code.jquery.com/jquery.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SPECS</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+	<script src="https://code.jquery.com/jquery.js"></script>
 
-<script> 
-function myFunction(){
-    console.log('Entering in myFunction');
-    var content = $('textarea#textarea').val()
-    
-    console.log('Sending string:' + content);
-    socket.emit('add', content);
-}
-var socket = io.connect(window.location.origin);
-socket.on('text', function (data) {
-	console.log("text socket called with data: " + data);
-	console.log(data);
-	$('#box').html(data);
-	$('textarea#textarea').val(data);
-	});
-</script>
+	<script> 
+		function myFunction(){
+			console.log('Entering in myFunction');
+			var content = $('textarea#textarea').val()
+
+			console.log('Sending string:' + content);
+			socket.emit('add', content);
+		}
+		var socket = io.connect(window.location.origin);
+		socket.on('text', function (data) {
+			console.log("text socket called with data: " + data);
+			console.log(data);
+			$('#box').html(data);
+			$('textarea#textarea').val(data);
+		});
+	</script>
+	<style type="text/css">
+		textarea {
+			background-color: #002b36 !important;
+			height: 400px;
+			color: #839496 !important;
+			padding: 24px !important;
+		}
+	</style>
+
+</head>
+<body>
+<br><br>
+<div class="container">
+  <h2>Specs: First VR text editor</h2>
+  <p>The form below contains a textarea for editor:</p>
+  <form>
+    <div class="form-group">
+      <label for="comment">Editor:</label>
+      <textarea class="form-control" cols="20" rows="5" onkeyup="myFunction()" id='textarea'></textarea>
+    </div>
+  </form>
+</div>
+</body>
+</html>

@@ -16,7 +16,9 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({
 	    extended: true
 }));
+
 app.use(bodyParser.json());
+app.use(express.static('assests'))
 
 //Route
 app.get('/', function (req, res) {
