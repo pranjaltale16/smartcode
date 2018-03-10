@@ -4,13 +4,46 @@
 	<title>Basic A-frame</title>
 	<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
 	<script>
-		AFRAME.registerComponent('set-sky', {
+		AFRAME.registerComponent('set-l', {
 			schema: {default: ''},
 			init() {
-				const sky = document.querySelector('a-sky');
+				const objl = document.getElementById('lef');
+				const objc = document.getElementById('cen');
+				const objr = document.getElementById('rig');
 				this.el.addEventListener('click', () => {
-					sky.setAttribute('src', this.data);
+					objl.setAttribute('position', {x: -2, y: 0, z: -2});
+					objc.setAttribute('position', {x:  0, y: 0, z: -4});
+					objr.setAttribute('position', {x:  5, y: 0, z: -4});
 				});
+
+			}
+		});
+		AFRAME.registerComponent('set-c', {
+			schema: {default: ''},
+			init() {
+				const objl = document.getElementById('lef');
+				const objc = document.getElementById('cen');
+				const objr = document.getElementById('rig');
+				this.el.addEventListener('click', () => {
+					objl.setAttribute('position', {x: -5, y: 0, z: -4});
+					objc.setAttribute('position', {x:  0, y: 0, z: -3});
+					objr.setAttribute('position', {x:  5, y: 0, z: -4});
+				});
+
+			}
+		});
+		AFRAME.registerComponent('set-r', {
+			schema: {default: ''},
+			init() {
+				const objl = document.getElementById('lef');
+				const objc = document.getElementById('cen');
+				const objr = document.getElementById('rig');
+				this.el.addEventListener('click', () => {
+					objl.setAttribute('position', {x: -5, y: 0, z: -4});
+					objc.setAttribute('position', {x:  0, y: 0, z: -4});
+					objr.setAttribute('position', {x:  2, y: 0, z: -2});
+				});
+
 			}
 		});
 	</script>
@@ -19,11 +52,11 @@
 	<a-scene>
 		<a-sky></a-sky>
 		<a-camera position="0 0 0">
-			<a-cursor color="#4CC3D9" fuse="true" timeout="10"></a-cursor>
+			<a-cursor color="#4CC3D9" fuse="true" timeout="1"></a-cursor>
 		</a-camera>
-		<a-plane position="0 0 -4" rotation="0 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-		<a-plane position="5 0 -4" rotation="0 -45 0" width="4" height="4" color="#7BC8A4"></a-plane>
-		<a-plane position="-5 0 -4" rotation="0 45 0" width="4" height="4" color="#7BC8A4"></a-plane>
+		<a-plane id="lef" position="-5 0 -4" set-l="lef" rotation="0 45 0" width="4" height="4" color="red"></a-plane>
+		<a-plane id="cen" position=" 0 0 -4" set-c="cen" rotation="0 0 0" width="4" height="4" color="green"></a-plane>
+		<a-plane id="rig" position=" 5 0 -4" set-r="rig" rotation="0 -45 0" width="4" height="4" color="blue"></a-plane>
 		<!-- <a-sphere color="#F44336" set-sky="hello" radius="1" position="0 2 0"></a-sphere> -->
 		<!-- <a-sphere color="#F44336" set-sky="https://c3.staticflickr.com/2/1475/26239222850_cabde81c39_k.jpg" radius="1" position="-4 2 0"></a-sphere> -->
 		<!-- <a-sphere color="#FFEB3B" set-sky="https://c2.staticflickr.com/2/1688/25044226823_53c979f8a1_k.jpg" radius="1" position="4 2 0"></a-sphere> -->
