@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Basic A-frame</title>
+	<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+	<script>
+		AFRAME.registerComponent('set-sky', {
+			schema: {default: ''},
+			init() {
+				const sky = document.querySelector('a-sky');
+				this.el.addEventListener('click', () => {
+					sky.setAttribute('src', this.data);
+				});
+			}
+		});
+	</script>
+</head>
+<body>
+	<a-scene>
+		<a-sky></a-sky>
+		<a-camera position="0 0 0">
+			<a-cursor color="#4CC3D9" fuse="true" timeout="10"></a-cursor>
+		</a-camera>
+		<a-plane position="0 0 -4" rotation="0 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+		<a-plane position="5 0 -4" rotation="0 -45 0" width="4" height="4" color="#7BC8A4"></a-plane>
+		<a-plane position="-5 0 -4" rotation="0 45 0" width="4" height="4" color="#7BC8A4"></a-plane>
+		<!-- <a-sphere color="#F44336" set-sky="hello" radius="1" position="0 2 0"></a-sphere> -->
+		<!-- <a-sphere color="#F44336" set-sky="https://c3.staticflickr.com/2/1475/26239222850_cabde81c39_k.jpg" radius="1" position="-4 2 0"></a-sphere> -->
+		<!-- <a-sphere color="#FFEB3B" set-sky="https://c2.staticflickr.com/2/1688/25044226823_53c979f8a1_k.jpg" radius="1" position="4 2 0"></a-sphere> -->
+		<!-- <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box> -->
+		<!-- <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere> -->
+		<!-- <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder> -->
+		<!-- <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane> -->
+		<!-- <a-sky color="#ECECEC"></a-sky> -->
+	</a-scene>
+	
+</body>
+</html>
