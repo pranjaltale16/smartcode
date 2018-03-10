@@ -17,14 +17,6 @@
     </script>
 
     <script>
-
-        var color = document.getElementById('text');
-        // setInterval(function() {
-        //     var randomHexColor = '#'+Math.floor(Math.random()*16777215).toString(16);
-        //     color.setAttribute('text', 'color', randomHexColor);
-        // }, 1000);
-
-
         AFRAME.registerComponent('set-l', {
             schema: {
                 default: '',
@@ -112,23 +104,19 @@
 
     <a-plane id="lef" position="-5 0 -4" set-l="lef" rotation="0 45 0" width="4" height="4" color="#002b36">
         <a-entity id="text-l" 
-            geometry="primitive: plane; width: 4; height: auto" 
-            text="align:left; color: #839496;  value: This text will be 4 units wide. This text will be 4 units wide.">
+            text="letterSpacing: -2; font: https://cdn.aframe.io/fonts/SourceCodePro.fnt; align:left; color: #839496; width: 4; value: This text will be 4 units wide. This text will be 4 units wide.">
         </a-entity>
     </a-plane>
 
     <a-plane id="cen" position=" 0 0 -4" set-c="cen" rotation="0 0 0" width="4" height="4" color="#002b36">
-        <a-text position="0 0 -3" value="Hello, World!"></a-text>
         <a-entity id="text-c" 
-            geometry="primitive: plane; width: 4; height: auto" 
-            text="align:left; color: #839496;  value: This text will be 4 units wide. This text will be 4 units wide.">
+            text="letterSpacing: -2; font: https://cdn.aframe.io/fonts/SourceCodePro.fnt; align:left; color: #839496; width: 4;  value: This text will be 4 units wide. This text will be 4 units wide.">
         </a-entity>
     </a-plane>
 
     <a-plane id="rig" position=" 5 0 -4" set-r="rig" rotation="0 -45 0" width="4" height="4" color="#002b36">
         <a-entity id="text-r" 
-            geometry="primitive: plane; width: 4;" 
-            text="align:center; color: #839496;  value: This text will be 4 units wide. This text will be 4 units wide.">
+            text="letterSpacing: -2; font: https://cdn.aframe.io/fonts/SourceCodePro.fnt; align:left; color: #839496; width: 4; value: This text will be 4 units wide. This text will be 4 units wide. This text will be 4 units wide. This text will be 4 units wide. This text will be 4 units wide. This text will be 4 units wide.">
         </a-entity>
     </a-plane>
 </a-scene>
