@@ -1,2 +1,3 @@
 # smartcode
-An application based on VR technology to improve productivity
+
+An application based on VR technology to provide multiple workspaces and enhance a developer's productivity.
